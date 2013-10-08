@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Dashboard" %}{% endblock %}
+{% block style %}
+      /* tables */
+      table#sortTable th {
+        background-image: url("{% static "img/bg.gif" %}");
+        background-repeat: no-repeat;
+        background-position: center right;
+        cursor: pointer;
+      }
+      table#sortTable thead tr .headerSortUp {
+        background-image: url("{% static "img/asc.gif" %}");
+      }
+      table#sortTable thead tr .headerSortDown {
+        background-image: url("{% static "img/desc.gif" %}");
+      }
+{% endblock %}
+{% block content %}
+    <div class="pull-right">
+      page_setup 
+    </div>
+    <h2>Dashboard</h2>
+    <hr>
+    <div class="span8">
+      Add Connection"
+      <br><br>
+    </div>
+    <div class="span8">
+    </div>
+{% endblock %}
+{% block script %}
+  <script src="{% static "js/jquery.tablesorter.js" %}"></script>
+  <script >
+    $(function() {
+      $("#sortTable").tablesorter({ sortList: [[0,0]] });
+    });
+  </script>
+{% endblock %}
