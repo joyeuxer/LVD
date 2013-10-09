@@ -18,34 +18,62 @@
       }
 {% endblock %}
 {% block content %}
-  <div class="container-narrow">
 <!--    <div class="well pagination-left"> -->
-   <div class="pagination-centered">
-    <div class="well pagination-centered pull-left">
-      <h2>Live Video, Click to continue</h2>
-      <h3>Video Player is not availiable now.</h3> 
-    </div>
-    <div class="well pull-right">
-     <h4>Description:</h4>
-     <p>ssssssssss</p>
-    </div>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
     <div class="container">
-     <div class="well span-8">教育</div>
-     <div class="well span-8">教育</div>
-     <div class="well span-8">教育</div>
-     <div class="well span-8">教育</div>
-     <div class="well span-8">教育</div>
+      <table>
+	<tr>
+	<td >
+        <div id="player" class="well pagination-centered">
+          <h2>Live Video, Click to continue</h2>
+          <h3>Video Player is not availiable now.</h3> 
+        </div>
+        </td>
+        <td class="span3 pagination-centered">
+        <div class="well span2 pull-right grow4">
+          <h4>Description:</h4>
+          <p>ssssssssss</p>
+        </div>
+	</td>
+        </tr>
+      </table>
     </div>
-   </div>
-  </div>
+    <div class="navbar navbar-fixed-bottom">
+      <div class="navbar-inner" style="bottom:10px">
+        <div class="container-narrow">
+          <a href="/" class="brand">欧美</a>
+          <a href="/" class="brand">日韩</a>
+          <a href="/" class="brand">大陆</a>
+          <a href="/" class="brand">港台</a>
+	</div>
+	<br><hr>
+	<div class="well container-narrow pagination-left">	  
+          <img class="video-gallery" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
+          <img class="video-gallery" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
+          <img class="video-gallery" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
+          <img class="video-gallery" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
+          <img class="video-gallery" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
+          <img class="video-gallery" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
+          <img class="video-gallery" src="{% static "img/pre-play.png" %}" alt="Test" />
+	</div>
+	<div class="container grow1">
+	</div>
+      </div>
+    </div>
 {% endblock %}
 {% block script %}
   <script src="{% static "js/jquery.tablesorter.js" %}"></script>
+  <script type="text/javascript" src="http://jwpsrv.com/library/QdAkHC_fEeOxKBIxOUCPzg.js"></script>
   <script >
     $(function() {
       $("#sortTable").tablesorter({ sortList: [[0,0]] });
+    });
+  </script>
+  <script type="text/javascript">
+    jwplayer("player").setup({
+        file: "http://147.2.212.123:8082/test.mp4",
+        height: 406,
+        image: "{% static "img/pre-play.png" %}",
+        width: 720,
     });
   </script>
 {% endblock %}

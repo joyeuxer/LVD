@@ -65,16 +65,23 @@ sup {
 sub {
   bottom: -0.25em;
 }
-
+/*
 img {
-  width: auto\9;
+  width: auto;
   height: auto;
   max-width: 100%;
   vertical-align: middle;
   border: 0;
   -ms-interpolation-mode: bicubic;
 }
-
+*/
+.video-gallery {
+  width: 100px;
+  height: 80px;
+  vertical-align: middle;
+  border: 1;
+  -ms-interpolation-mode: bicubic;
+}
 #map_canvas img,
 .google-maps img {
   max-width: none;
@@ -290,7 +297,42 @@ a:hover {
 .navbar-fixed-bottom .container {
   width: 940px;
 }
-
+.grow12 {
+  height: 940px;
+}
+.grow11 {
+  height: 860px;
+}
+.grow10 {
+  height: 780px;
+}
+.grow9 {
+  height: 700px;
+}
+.grow8 {
+  height: 620px;
+}
+.grow7 {
+  height: 540px;
+}
+.grow6 {
+  height: 460px;
+}
+.grow5 {
+  height: 380px;
+}
+.grow4 {
+  height: 300px;
+}
+.grow3 {
+  height: 220px;
+}
+.grow2 {
+  height: 140px;
+}
+.grow1 {
+  height: 60px;
+}
 .span12 {
   width: 940px;
 }
@@ -3065,7 +3107,7 @@ table th[class*="span"],
   padding: 19px;
   margin-bottom: 20px;
   background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
+  border: 2px solid #e3e3e3;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
