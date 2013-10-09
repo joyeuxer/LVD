@@ -75,12 +75,9 @@ img {
   -ms-interpolation-mode: bicubic;
 }
 */
-.video-gallery {
+.img-gallery {
   width: 100px;
   height: 80px;
-  vertical-align: middle;
-  border: 1;
-  -ms-interpolation-mode: bicubic;
 }
 #map_canvas img,
 .google-maps img {
