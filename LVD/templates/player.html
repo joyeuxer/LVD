@@ -47,8 +47,8 @@
 	</div>
 	<br><hr>
 	<div class="container-narrow pagination-left">	  
-          <img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
-          <img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
+          <a href="player2" ><img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" /></a>&nbsp&nbsp&nbsp 
+          <a href="player3" ><img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" /></a>&nbsp&nbsp&nbsp 
           <img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
           <img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
           <img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
@@ -69,7 +69,17 @@
   </script>
   <script type="text/javascript">
     jwplayer("player").setup({
-        file: "http://147.2.212.123:8082/test.mp4",
+	{% ifequal video 'live' %}
+        repeat: "true",
+        autostart: "false",
+        playlist: [{
+            image: "uploads/1.jpg",
+            file: "rtmp://147.2.207.124/live/live1",
+            repeat: "list",
+        }],
+	{% else %}
+	file: "{% static video %}",
+	{% endifequal %}
         height: 406,
         image: "{% static "img/pre-play.png" %}",
         width: 720,

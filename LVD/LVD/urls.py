@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     #url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'player.views.player', name='player'),
+    url(r'^$', 'player.views.index', name='index'),
+    url(r'^player(?P<video>.*)$', 'player.views.player', name='player'),
 )
 urlpatterns += patterns('',
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
