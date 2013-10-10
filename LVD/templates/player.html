@@ -28,11 +28,60 @@
           <h1>Loading...</h1>
         </div>
         </td>
-        <td class="pagination-centered">
-        <div class="well span2 pull-right grow4">
-          <h4>Description:</h4>
-          <p>ssssssssss</p>
-        </div>
+        <td class="span3 pagination-centered">
+        <div class="well span2 pull-left grow4" style="width:300px">
+          {% ifequal video 'live' %}
+            <p style="color:red;font-size:24px;">今日热播</p>
+	    <table>
+	    <tr>
+	    <td> 08:00 - 10:00&nbsp&nbsp </td>
+	    <td align="left"> 狄仁杰之神都龙王 </td>
+            </tr>
+	    <tr>
+            <td> 10:00 - 11:00&nbsp&nbsp </td>
+            <td align="left"> SUSE QA Team meeting </td>
+            </tr>
+	    <tr>
+            <td> 11:00 - 12:00&nbsp&nbsp </td>
+            <td align="left"> 今日聚焦: 城管打人那点事 </td>
+            </tr>
+	    <tr>
+            <td> 12:00 - 14:00&nbsp&nbsp </td>
+            <td align="left"> 金刚狼2 </td>
+            </tr>
+            <tr>
+            <td> 14:00 - 15:00&nbsp&nbsp </td>
+            <td align="left"> 体育新闻 </td>
+            </tr>
+            <tr>
+            <td> 15:00 - 17:00&nbsp&nbsp </td>
+            <td align="left"> 休闲剧场: 武林外传 </td>
+            </tr>
+            <tr>
+            <td> 17:00 - 19:00&nbsp&nbsp </td>
+            <td align="left"> 小时代之小时代2 </td>
+            </tr>
+            <tr>
+            <td> 19:00 - 19:30&nbsp&nbsp </td>
+            <td align="left"> 新闻联播 </td>
+            </tr>
+	    <tr>
+            <td> 19:00 - 20:30&nbsp&nbsp </td>
+            <td align="left"> 热播剧场: 生活大爆炸第五季 </td>
+            </tr>
+            <tr>
+            <td> 21:00 - 22:30&nbsp&nbsp </td>
+            <td align="left"> 2B青年欢乐多 </td>
+            </tr>
+            <tr>
+            <td> 23:00 - 23:50&nbsp&nbsp </td>
+            <td align="left"> 情感剧场：出轨的女人 </td>
+            </tr>
+	    </table>
+          {% else %}
+            <p> description </p>
+          {% endifequal %}
+          </div>
 	</td>
         </tr>
       </table>
@@ -44,6 +93,8 @@
           <a href="/" class="brand">日韩</a>
           <a href="/" class="brand">大陆</a>
           <a href="/" class="brand">港台</a>
+          <a href="/" class="brand">印度</a>
+          <a href="/" class="brand">其他</a>
 	</div>
 	<br><hr>
 	<div class="container-narrow pagination-left">	  
