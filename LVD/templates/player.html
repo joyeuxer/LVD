@@ -22,13 +22,12 @@
     <div class="container">
       <table>
 	<tr>
-	<td >
-        <div id="player" class="well pagination-centered">
-          <h2>Live Video, Click to continue</h2>
-          <h3>Video Player is not availiable now.</h3> 
+	<td>
+        <div id="player" class="well pagination-centered span7 grow4">
+          <h1>Loading...</h1>
         </div>
         </td>
-        <td class="span3 pagination-centered">
+        <td class="pagination-centered">
         <div class="well span2 pull-right grow4">
           <h4>Description:</h4>
           <p>ssssssssss</p>
@@ -47,13 +46,9 @@
 	</div>
 	<br><hr>
 	<div class="container-narrow pagination-left">	  
-          <a href="player2" ><img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" /></a>&nbsp&nbsp&nbsp 
-          <a href="player3" ><img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" /></a>&nbsp&nbsp&nbsp 
-          <img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
-          <img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
-          <img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
-          <img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" />&nbsp&nbsp&nbsp 
-          <img class="img-gallery img-rounded img-polaroid" src="{% static "img/pre-play.png" %}" alt="Test" />
+          {% for id,clip in data %}
+          <a href="player{{ id }}" ><img class="img-gallery img-rounded img-polaroid" src="{% static clip %}" alt="Test" /></a>&nbsp&nbsp&nbsp 
+          {% endfor %}
 	</div>
 	<div class="container" height="10px">&nbsp&nbsp</div>
       </div>
@@ -81,7 +76,7 @@
 	file: "{% static video %}",
 	{% endifequal %}
         height: 406,
-        image: "{% static "img/pre-play.png" %}",
+        image: "{% static "img/" %}",
         width: 720,
     });
   </script>
