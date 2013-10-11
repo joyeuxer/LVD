@@ -27,6 +27,7 @@ def clearAllTablesRecords():
     Classification.objects.all().delete()
     VideoInfo.objects.all().delete()
 
+
 #parameter examples: classificationStrList=['a','b','c'], actorsNameList=['sam','tom','kitty']
 def insertVideo(name,place='',score='',releaseDate='2013-09-20',thumbnailsLoc='',url='',classificationStrList=[],director='',actorsNameList=[],sex='',birth='1900-01-01',country='',content=''):
     tmpVideo = VideoInfo(name=name,place=place,score=score,releaseDate=releaseDate,thumbnailsLoc=thumbnailsLoc,url=url)
@@ -60,4 +61,18 @@ def insertVideo(name,place='',score='',releaseDate='2013-09-20',thumbnailsLoc=''
             # existing classification
             else:
                 tmpVideo.classification.add(targetClassificationList[0])
+
+
+
+def searchByClassification(aimClass):
+    aimClassificationList = Classification.objects.filter(name=aimClass)
+    allVideoInfoList = VideoInfo.objects.order_by('-score') #ordering from high score to low
+    searchedClassifiedVideoList = []
+    # No classification record for the aimClass
+    if aimClassificationList:
+        for video in allVideoInfoList:
+            if aimClassificationList[0] in video.classification.all():
+                searchedClassifiedVideoList.append(video)
+
+    return searchedClassifiedVideoList
  
