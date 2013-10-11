@@ -31,6 +31,7 @@ class VideoInfo(models.Model):
 
 class LiveMenu(models.Model):
     name = models.CharField(max_length=75)
+    date = models.DateField()
     start_time = models.CharField(max_length=5)
     end_time = models.CharField(max_length=5)
     order = models.IntegerField()

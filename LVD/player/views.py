@@ -4,10 +4,16 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from player.models import VideoInfo
 from player.models import VideoIntroduction
+from player.models import LiveMenu
 from django.conf import settings
+import time
 
 def index(request):
     return HttpResponseRedirect('playerlive')
+
+def getDate():
+    return time.strftime("%Y-%m-%d")
+
 
 def player(request,video):
     ids=[]
@@ -26,8 +32,14 @@ def player(request,video):
         #curActors = join(curVideoIntro.actors.all().values())
         #curVideoDesc = "Director: "+curVideoIntro.director+"\n\nContent: "+curVideoIntro.content
         curVideoName = curVideo.name
-        curVideoDirector = curVideoIntro.director
-        curVideoDesc = curVideoIntro.content
+        curVideoDesc = "Director: " + curVideoIntro.director + "Content: " + curVideoIntro.content
+    if video == 'live':
+        curDate = getDate().strip()
+        print 'cur date = ', curDate
+        try:
+            todayLiveMenu = LiveMenu.objects.filter(date='2013-10-11')
+        except:
+            print "Can not get today live memu list"
     try:
         VideoAll = VideoInfo.objects.all()
     except VideoInfo.DoesNotExist:
@@ -106,4 +118,4 @@ def searchByPlace(aimPlace):
     searchedPlaceVideoList = VideoInfo.objects.filter(place=aimPlace).order_by('-score') #ordering from high score to low
     return searchedPlaceVideoList
 
- 
+
