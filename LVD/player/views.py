@@ -75,4 +75,10 @@ def searchByClassification(aimClass):
                 searchedClassifiedVideoList.append(video)
 
     return searchedClassifiedVideoList
+
+
+def searchByPlace(aimPlace):
+    searchedPlaceVideoList = VideoInfo.objects.filter(place=aimPlace).order_by('-score') #ordering from high score to low
+    return searchedPlaceVideoList
+
  
