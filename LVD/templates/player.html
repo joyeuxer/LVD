@@ -23,13 +23,13 @@
       <table>
         <tr height="40px"></tr>
 	<tr>
-	<td>
+	<td class="vtop">
         <div id="player" class="well pagination-centered span7 grow4">
           <h1>Loading...</h1>
         </div>
         </td>
-        <td class="span3 pagination-centered">
-        <div class="well span2 pull-left grow4" style="width:300px">
+        <td class="span3 pagination-centered vtop">
+        <div class="well span2 pull-left" style="width:300px">
           {% ifequal video 'live' %}
             <p style="color:red;font-size:24px;">今日热播</p>
 	    <table>
@@ -79,9 +79,11 @@
             </tr>
 	    </table>
           {% else %}
-            <div class="pagination-left">
-	    <p style="color:red;font-size:24px;">{{ curVideoName }}</p>
-            <p> {{ curVideoDesc }} </p>
+	    <p style="color:red;font-size:24px;">{{ curVideoName }}</p> 
+            <table>
+            <tr><td class="vtop">Director:</td><td> {{ curVideoDirector }} </td></tr>
+            <tr><td class="vtop">Content:</td><td style="text-align:left;"> {{ curVideoDesc }} </td></tr>
+            </table>
             </div>
           {% endifequal %}
           </div>

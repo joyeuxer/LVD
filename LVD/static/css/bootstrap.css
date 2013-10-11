@@ -192,7 +192,15 @@ textarea {
     page-break-after: avoid;
   }
 }
-
+.vtop {
+  vertical-align:top;
+}
+.vmiddle {
+  vertical-align:middle;
+}
+.vbottom {
+  vertical-align:bottom;
+}
 .clearfix {
   *zoom: 1;
 }

@@ -26,7 +26,8 @@ def player(request,video):
         #curActors = join(curVideoIntro.actors.all().values())
         #curVideoDesc = "Director: "+curVideoIntro.director+"\n\nContent: "+curVideoIntro.content
         curVideoName = curVideo.name
-        curVideoDesc = "Director: " + curVideoIntro.director + "Content: " + curVideoIntro.content
+        curVideoDirector = curVideoIntro.director
+        curVideoDesc = curVideoIntro.content
     try:
         VideoAll = VideoInfo.objects.all()
     except VideoInfo.DoesNotExist:
