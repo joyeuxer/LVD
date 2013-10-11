@@ -29,4 +29,9 @@ class VideoInfo(models.Model):
     classification = models.ManyToManyField(Classification)
     introduction = models.ForeignKey(VideoIntroduction)
 
-
+class LiveMenu(models.Model):
+    name = models.CharField(max_length=75)
+    start_time = models.CharField(max_length=5)
+    end_time = models.CharField(max_length=5)
+    order = models.IntegerField()
+    
