@@ -14,26 +14,50 @@ def player(request,video):
     data=zip(ids,clips)	
     return render_to_response('player.html', locals(), context_instance=RequestContext(request))
 
-#def current_datetime(request):
-#    now = datetime.datetime.now()
-#    return render_to_response('current_datetime.html', {'current_date': now})
-#def showTablePublisher(request):
-    #p1 = Publisher(name='Apress', address='2855 Telegraph Avenue',city='Berkeley', state_province='CA', country='U.S.A.',website='http://www.apress.com/')
-    #p1.save()
-    #p2 = Publisher(name="O'Reilly", address='10 Fawcett St.',city='Cambridge', state_province='MA', country='U.S.A.', website='http://www.oreilly.com/')
-    #p2.save()
-#    publisher_list = Publisher.objects.all()
+                              
+def initDB():
+    clearAllTablesRecords()
+    insertVideo(name='video1',place='china',url='www.baidu.com',classificationStrList=['horrific','love'], director='xu zheng',actorsNameList=['xu zheng','fenggong'],content='This is a video of xu zheng.')
+    insertVideo(name='video2',place='china',url='www.baidu.com',classificationStrList=['comedy','love'], director='feng xiao gang',actorsNameList=['xufan','fenggong'],content='This is a video of feng xiao gang.')
+    insertVideo(name='video3',place='china',url='www.baidu.com',classificationStrList=['action','love'], director='feng xiao gang',actorsNameList=['xufan','fenggong'],content='This is a video of feng xiao gang.')
 
+def clearAllTablesRecords():
+    Actor.objects.all().delete()
+    VideoIntroduction.objects.all().delete()
+    Classification.objects.all().delete()
+    VideoInfo.objects.all().delete()
 
+#parameter examples: classificationStrList=['a','b','c'], actorsNameList=['sam','tom','kitty']
+def insertVideo(name,place='',score='',releaseDate='2013-09-20',thumbnailsLoc='',url='',classificationStrList=[],director='',actorsNameList=[],sex='',birth='1900-01-01',country='',content=''):
+    tmpVideo = VideoInfo(name=name,place=place,score=score,releaseDate=releaseDate,thumbnailsLoc=thumbnailsLoc,url=url)
+    #create VideoIntroduction object, it can no be null
+    if director or content or actorsNameList:
+        tmpVideoIntro = VideoIntroduction(director=director,content=content)
+        tmpVideoIntro.save()
+        if actorsNameList:
+            for actorNameStr in actorsNameList:
+                targetActorList = Actor.objects.filter(name = actorNameStr)
+                # new actor 
+                if not targetActorList:
+                    tmpActor = Actor(name=actorNameStr,sex=sex,birth=birth,country=country)
+                    tmpActor.save()
+                    tmpVideoIntro.actors.add(tmpActor)
+                # existing actor
+                else:
+                    tmpVideoIntro.actors.add(targetActorList[0])
+        tmpVideo.introduction = tmpVideoIntro
+    tmpVideo.save()
 
-def initDB:
-    pass
-
-def insertVideo():
-    pass
-
-# work way 
-#>>> b1= Book(title='my book 1', publisher=p1,publication_date='2013-09-20')
-#>>> b1.save()
-#>>> b1.authors.add(a1,a2);
-                               
+    #create Classification object
+    if classificationStrList:
+        for classificationStr in classificationStrList:
+            targetClassificationList = Classification.objects.filter(name = classificationStr)
+            # new classification
+            if not targetClassificationList:
+                tmpClassification = Classification(name=classificationStr)
+                tmpClassification.save()
+                tmpVideo.classification.add(tmpClassification)
+            # existing classification
+            else:
+                tmpVideo.classification.add(targetClassificationList[0])
+ 
