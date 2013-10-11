@@ -201,6 +201,12 @@ textarea {
 .vbottom {
   vertical-align:bottom;
 }
+.text-left {
+  text-align:left;
+}
+.text-right {
+  text-align:left;
+}
 .clearfix {
   *zoom: 1;
 }
