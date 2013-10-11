@@ -79,7 +79,10 @@
             </tr>
 	    </table>
           {% else %}
-            <p> description </p>
+            <div class="pagination-left">
+	    <p style="color:red;font-size:24px;">{{ curVideoName }}</p>
+            <p> {{ curVideoDesc }} </p>
+            </div>
           {% endifequal %}
           </div>
 	</td>
@@ -99,7 +102,7 @@
 	<br><hr>
 	<div class="container-narrow pagination-left">	  
           {% for id,clip in data %}
-          <a href="player{{ id }}" ><img class="img-gallery img-rounded img-polaroid" src="{% static clip %}" alt="Test" /></a>&nbsp&nbsp&nbsp 
+          <a href="player{{ id }}" ><img class="img-gallery img-rounded img-polaroid" src="http://147.2.212.123:8082/{{ clip }}" alt="Test" /></a>&nbsp&nbsp&nbsp 
           {% endfor %}
 	</div>
 	<div class="container" height="10px">&nbsp&nbsp</div>
@@ -125,10 +128,10 @@
             repeat: "list",
         }],
 	{% else %}
-	file: "{% static video %}",
+	file: "{{ video }}",
 	{% endifequal %}
         height: 406,
-        image: "{% static "img/" %}",
+        image: "{{ thumbnail }}",
         width: 720,
     });
   </script>

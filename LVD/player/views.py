@@ -2,19 +2,43 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
+from player.models import VideoInfo
+from player.models import VideoIntroduction
+from django.conf import settings
 
 def index(request):
     return HttpResponseRedirect('playerlive')
 
 def player(request,video):
+    ids=[]
+    clips=[]
     if video != 'live':
-        video = 'uploads/test'+video+'.mp4'
-    clips = ('img/beach.jpg','img/clover.jpg','img/dingdang.jpg','img/drop.jpg','img/flower.jpg','img/spring.jpg','img/train.jpg')
-    ids = (2,3,4,5,6,7,8)
-    data=zip(ids,clips)	
+        try:
+            curVideo = VideoInfo.objects.get(id=int(video))
+        except VideoInfo.DoesNotExist:
+            print "Video id"+video+" isn't in the database yet."
+        video = settings.RES_URL_HEAD + curVideo.url
+        thumbnail = settings.RES_URL_HEAD + curVideo.thumbnailsLoc
+        try:
+           curVideoIntro = curVideo.introduction
+        except VideoIntroduction.DoesNotExist:
+            print "Can not found video info for"+curVideo.name
+        #curActors = join(curVideoIntro.actors.all().values())
+        #curVideoDesc = "Director: "+curVideoIntro.director+"\n\nContent: "+curVideoIntro.content
+        curVideoName = curVideo.name
+        curVideoDesc = "Director: " + curVideoIntro.director + "Content: " + curVideoIntro.content
+    try:
+        VideoAll = VideoInfo.objects.all()
+    except VideoInfo.DoesNotExist:
+        print "no video in the database yet."
+    for v in VideoInfo.objects.all():
+        clips.append(v.thumbnailsLoc)
+        ids.append(v.id)
+#    clips = ('img/beach.jpg','img/clover.jpg','img/dingdang.jpg','img/drop.jpg','img/flower.jpg','img/spring.jpg','img/train.jpg')
+#    ids = (2,3,4,5,6,7,8)
+    data=zip(ids,clips)
     return render_to_response('player.html', locals(), context_instance=RequestContext(request))
 
-                              
 def initDB():
     clearAllTablesRecords()
     insertVideo(name='video1',place='china',url='www.baidu.com',classificationStrList=['horrific','love'], director='xu zheng',actorsNameList=['xu zheng','fenggong'],content='This is a video of xu zheng.')
