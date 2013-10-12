@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Dashboard" %}{% endblock %}
+{% block style %}
+      /* tables */
+      table#sortTable th {
+        background-image: url("{% static "img/bg.gif" %}");
+        background-repeat: no-repeat;
+        background-position: center right;
+        cursor: pointer;
+      }
+      table#sortTable thead tr .headerSortUp {
+        background-image: url("{% static "img/asc.gif" %}");
+      }
+      table#sortTable thead tr .headerSortDown {
+        background-image: url("{% static "img/desc.gif" %}");
+      }
+{% endblock %}
+{% block content %}
+<!--    <div class="well pagination-left"> -->
+    <div class="container">
+      <table>
+        <tr height="40px"></tr>
+	<tr>
+	<td class="vtop">
+        <div id="player" class="well pagination-centered span7 grow4">
+          <h1>Loading...</h1>
+        </div>
+        </td>
+        <td class="span3 pagination-centered vtop">
+        <div class="well span2 pull-left" style="width:300px">
+          {% ifequal video 'live' %}
+            <p style="color:red;font-size:24px;">今日热播</p>
+	    <table>
+	    <tr>
+	    <td> 08:00 - 10:00&nbsp&nbsp </td>
+	    <td align="left"> 狄仁杰之神都龙王 </td>
+            </tr>
+	    <tr>
+            <td> 10:00 - 11:00&nbsp&nbsp </td>
+            <td align="left"> SUSE QA Team meeting </td>
+            </tr>
+	    <tr>
+            <td> 11:00 - 12:00&nbsp&nbsp </td>
+            <td align="left"> 今日聚焦: 城管打人那点事 </td>
+            </tr>
+	    <tr>
+            <td> 12:00 - 14:00&nbsp&nbsp </td>
+            <td align="left"> 金刚狼2 </td>
+            </tr>
+            <tr>
+            <td> 14:00 - 15:00&nbsp&nbsp </td>
+            <td align="left"> 体育新闻 </td>
+            </tr>
+            <tr>
+            <td> 15:00 - 17:00&nbsp&nbsp </td>
+            <td align="left"> 休闲剧场: 武林外传 </td>
+            </tr>
+            <tr>
+            <td> 17:00 - 19:00&nbsp&nbsp </td>
+            <td align="left"> 小时代之小时代2 </td>
+            </tr>
+            <tr>
+            <td> 19:00 - 19:30&nbsp&nbsp </td>
+            <td align="left"> 新闻联播 </td>
+            </tr>
+	    <tr>
+            <td> 19:00 - 20:30&nbsp&nbsp </td>
+            <td align="left"> 热播剧场: 生活大爆炸第五季 </td>
+            </tr>
+            <tr>
+            <td> 21:00 - 22:30&nbsp&nbsp </td>
+            <td align="left"> 2B青年欢乐多 </td>
+            </tr>
+            <tr>
+            <td> 23:00 - 23:50&nbsp&nbsp </td>
+            <td align="left"> 情感剧场：出轨的女人 </td>
+            </tr>
+	    </table>
+          {% else %}
+	    <p style="color:red;font-size:24px;">{{ curVideoName }}</p> 
+            <table>
+            <tr><td class="vtop">Director:</td><td> {{ curVideoDirector }} </td></tr>
+            <tr><td class="vtop">Content:</td><td style="text-align:left;"> {{ curVideoDesc }} </td></tr>
+            </table>
+            </div>
+          {% endifequal %}
+          </div>
+	</td>
+        </tr>
+      </table>
+    </div>
+    <div class="navbar navbar-fixed-bottom">
+      <div class="navbar-inner" style="bottom:10px">
+        <div class="container-narrow">
+          <a href="/us" class="brand">欧美</a>
+          <a href="/jk" class="brand">日韩</a>
+          <a href="/cn" class="brand">大陆</a>
+          <a href="/gt" class="brand">港台</a>
+          <a href="/ind" class="brand">印度</a>
+          <a href="/other" class="brand">其他</a>
+	</div>
+	<br><hr>
+	<div class="container-narrow pagination-left">	  
+          {% for id,clip in data %}
+          <a href="/{{ place }}/player{{ id }}" ><img class="img-gallery img-rounded img-polaroid" src="http://147.2.212.123:8082/{{ clip }}" alt="Test" /></a>&nbsp&nbsp&nbsp 
+          {% endfor %}
+	</div>
+	<div class="container" height="10px">&nbsp&nbsp</div>
+      </div>
+    </div>
+{% endblock %}
+{% block script %}
+  <script src="{% static "js/jquery.tablesorter.js" %}"></script>
+  <script type="text/javascript" src="http://jwpsrv.com/library/QdAkHC_fEeOxKBIxOUCPzg.js"></script>
+  <script >
+    $(function() {
+      $("#sortTable").tablesorter({ sortList: [[0,0]] });
+    });
+  </script>
+  <script type="text/javascript">
+    jwplayer("player").setup({
+	{% ifequal video 'live' %}
+        repeat: "true",
+        autostart: "false",
+        playlist: [{
+            image: "uploads/1.jpg",
+            file: "rtmp://147.2.207.124/live/live1",
+            repeat: "list",
+        }],
+	{% else %}
+	file: "{{ video }}",
+	{% endifequal %}
+        height: 406,
+        image: "{{ thumbnail }}",
+        width: 720,
+    });
+  </script>
+{% endblock %}
