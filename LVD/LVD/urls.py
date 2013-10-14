@@ -11,12 +11,14 @@ urlpatterns = patterns('',
     #url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'player.views.index', name='index'),
     #url(r'^player(?P<video>.*)$', 'player.views.player', name='player'),
-    url(r'^(?P<place>[^/]*)(/player)?(?P<video>.*)$','player.views.advancedPlayer',name='advancedplayer'),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.STATIC_ROOT,}),
+    url(r'^(?P<place>[^_]*)(_player)?(?P<video>.*)$','player.views.advancedPlayer',name='advancedplayer'),
 
 )
-urlpatterns += patterns('',
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': settings.STATIC_ROOT,
-    }),
-)
+#urlpatterns += patterns('',
+#    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
+#        'document_root': settings.STATIC_ROOT,
+#    }),
+#)
 

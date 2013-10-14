@@ -64,7 +64,8 @@ STATIC_ROOT = os.path.join(os.path.dirname(__file__), '../', 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+#STATIC_URL = 'http://0.0.0.0:8080/static/'
+STATIC_URL = 'static/'
 #STATIC_URL = 'http://147.2.212.156:8080/static/'
 RES_URL_HEAD = 'http://147.2.212.123:8082'
 # Additional locations of static files

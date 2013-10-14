@@ -69,7 +69,7 @@
 	<div class="container-narrow pagination-left" style="overflow-x:auto">
           <table><tr>	  
           {% for id,clip in data %}
-          <td><a href="/{{ place }}/player{{ id }}" ><img class="img-gallery img-rounded img-polaroid" src="http://147.2.212.123:8082/{{ clip }}" alt="Test" /></a>&nbsp&nbsp</td> 
+          <td><a href="{{ place }}_player{{ id }}" ><img class="img-gallery img-rounded img-polaroid" src="http://147.2.212.123:8082/{{ clip }}" alt="Test" /></a>&nbsp&nbsp</td> 
           {% endfor %}
           </tr></table>
 	</div>

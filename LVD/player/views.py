@@ -9,7 +9,7 @@ from django.conf import settings
 import time
 
 def index(request):
-    return HttpResponseRedirect('us/playerlive')
+    return HttpResponseRedirect('us_playerlive')
 
 def getDate():
     return time.strftime("%Y-%m-%d")
@@ -58,12 +58,13 @@ def advancedPlayer(request,place='us',video=''):
     ids=[]
     clips=[]
     placeMap={ 'us':'America','jk':'','cn':'China','gt':'','ind':'','other':'' }
+    print 'Now video = %s ,place = %s.' %(video,place)
     if video != 'live':
         curVideo = ''
         try:
             curVideo = VideoInfo.objects.get(id=int(video))
         except ValueError, VideoInfo.DoesNotExist:
-            print "Video id"+video+" isn't in the database yet."
+            print "Video id  "+video+" isn't in the database yet."
         if not curVideo:
             try:
                 tmpList = searchByPlace(placeMap[place])
@@ -99,6 +100,7 @@ def advancedPlayer(request,place='us',video=''):
         searchedVideoList = searchByPlace(placeMap[place])
     except KeyError, VideoInfo.DoesNotExist:
         print "No video with specified search condition  in the database yet."
+    #assert False
     for v in searchedVideoList:
         clips.append(v.thumbnailsLoc)
         ids.append(v.id)
