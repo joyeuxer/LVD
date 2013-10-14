@@ -32,21 +32,57 @@
         <div class="well span2 pull-left" style="width:300px">
           {% ifequal video 'live' %}
             <p style="color:red;font-size:24px;">今日热播</p>
-	        <table>
-
-            {% for live in todayLiveMenu %}
-            <tr>
-            <td> {{ live.start_time }} - {{ live.end_time }}: </td>
-            <td align="left"> {{ live.name}} </td>
+	    <table>
+	    <tr>
+	    <td> 08:00 - 10:00&nbsp&nbsp </td>
+	    <td align="left"> 狄仁杰之神都龙王 </td>
             </tr>
-            {% endfor %}
-
-	        </table>
+	    <tr>
+            <td> 10:00 - 11:00&nbsp&nbsp </td>
+            <td align="left"> SUSE QA Team meeting </td>
+            </tr>
+	    <tr>
+            <td> 11:00 - 12:00&nbsp&nbsp </td>
+            <td align="left"> 今日聚焦: 城管打人那点事 </td>
+            </tr>
+	    <tr>
+            <td> 12:00 - 14:00&nbsp&nbsp </td>
+            <td align="left"> 金刚狼2 </td>
+            </tr>
+            <tr>
+            <td> 14:00 - 15:00&nbsp&nbsp </td>
+            <td align="left"> 体育新闻 </td>
+            </tr>
+            <tr>
+            <td> 15:00 - 17:00&nbsp&nbsp </td>
+            <td align="left"> 休闲剧场: 武林外传 </td>
+            </tr>
+            <tr>
+            <td> 17:00 - 19:00&nbsp&nbsp </td>
+            <td align="left"> 小时代之小时代2 </td>
+            </tr>
+            <tr>
+            <td> 19:00 - 19:30&nbsp&nbsp </td>
+            <td align="left"> 新闻联播 </td>
+            </tr>
+	    <tr>
+            <td> 19:00 - 20:30&nbsp&nbsp </td>
+            <td align="left"> 热播剧场: 生活大爆炸第五季 </td>
+            </tr>
+            <tr>
+            <td> 21:00 - 22:30&nbsp&nbsp </td>
+            <td align="left"> 2B青年欢乐多 </td>
+            </tr>
+            <tr>
+            <td> 23:00 - 23:50&nbsp&nbsp </td>
+            <td align="left"> 情感剧场：出轨的女人 </td>
+            </tr>
+	    </table>
           {% else %}
 	    <p style="color:red;font-size:24px;">{{ curVideoName }}</p> 
             <table>
-            <tr class="text-left"><td class="vtop">Director:&nbsp&nbsp</td><td> {{ curVideoDirector }} </td></tr>
-            <tr class="text-left"><td class="vtop">Content:&nbsp&nbsp</td><td> {{ curVideoDesc }} </td></tr>
+            <tr><td class="vtop">Director:</td><td> {{ curVideoDirector }} </td></tr>
+            <tr><td class="vtop">Content:</td><td style="text-align:left;"> {{ curVideoDesc }} </td></tr>
             </table>
             </div>
           {% endifequal %}
@@ -66,12 +102,10 @@
           <a href="/other" class="brand">其他</a>
 	</div>
 	<br><hr>
-	<div class="container-narrow pagination-left" style="overflow-x:auto">
-          <table><tr>	  
+	<div class="container-narrow pagination-left">	  
           {% for id,clip in data %}
-          <td><a href="/{{ place }}/player{{ id }}" ><img class="img-gallery img-rounded img-polaroid" src="http://147.2.212.123:8082/{{ clip }}" alt="Test" /></a>&nbsp&nbsp</td> 
+          <a href="/{{ place }}/player{{ id }}" ><img class="img-gallery img-rounded img-polaroid" src="http://147.2.212.123:8082/{{ clip }}" alt="Test" /></a>&nbsp&nbsp&nbsp 
           {% endfor %}
-          </tr></table>
 	</div>
 	<div class="container" height="10px">&nbsp&nbsp</div>
       </div>
