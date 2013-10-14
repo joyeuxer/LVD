@@ -9,7 +9,7 @@ from django.conf import settings
 import time
 
 def index(request):
-    return HttpResponseRedirect('us/playerlive')
+    return HttpResponseRedirect('playerlive')
 
 def getDate():
     return time.strftime("%Y-%m-%d")
@@ -52,52 +52,6 @@ def player(request,video):
 #    ids = (2,3,4,5,6,7,8)
     data=zip(ids,clips)
     return render_to_response('player.html', locals(), context_instance=RequestContext(request))
-
-
-def advancedPlayer(request,place='us',video=''):
-    ids=[]
-    clips=[]
-    placeMap={ 'us':'America','jk':'','cn':'China','gt':'','ind':'','other':'' }
-    if video != 'live':
-        curVideo = ''
-        try:
-            curVideo = VideoInfo.objects.get(id=int(video))
-        except ValueError, VideoInfo.DoesNotExist:
-            print "Video id"+video+" isn't in the database yet."
-        if not curVideo:
-            try:
-                tmpList = searchByPlace(placeMap[place])
-                if tmpList:
-                     curVideo = tmpList[0]
-                else:
-                    tmpList = VideoInfo.objects.all()
-                    if tmpList:
-                        curVideo = tmpList[0]
-            except:
-                pass
-        if curVideo:
-            try:
-                curVideoIntro = curVideo.introduction
-            except VideoIntroduction.DoesNotExist:
-                print "Can not found video info for"+curVideo.name
-            #curActors = join(curVideoIntro.actors.all().values())
-            #curVideoDesc = "Director: "+curVideoIntro.director+"\n\nContent: "+curVideoIntro.content
-            curVideoName = curVideo.name
-            curVideoDirector = curVideoIntro.director
-            curVideoDesc = curVideoIntro.content
-            video = settings.RES_URL_HEAD + curVideo.url
-            thumbnail = settings.RES_URL_HEAD + curVideo.thumbnailsLoc
-    try:
-        searchedVideoList = searchByPlace(placeMap[place])
-    except KeyError, VideoInfo.DoesNotExist:
-        print "No video with specified search condition  in the database yet."
-    for v in searchedVideoList:
-        clips.append(v.thumbnailsLoc)
-        ids.append(v.id)
-    data=zip(ids,clips)
-    return render_to_response('advancedplayer.html', locals(), context_instance=RequestContext(request))
-
-
 
 def initDB():
     clearAllTablesRecords()
