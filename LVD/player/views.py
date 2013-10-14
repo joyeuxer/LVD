@@ -87,6 +87,14 @@ def advancedPlayer(request,place='us',video=''):
             curVideoDesc = curVideoIntro.content
             video = settings.RES_URL_HEAD + curVideo.url
             thumbnail = settings.RES_URL_HEAD + curVideo.thumbnailsLoc
+    else:
+        curDate = getDate().strip()
+        print 'cur date = ', curDate
+        try:
+            todayLiveMenu = LiveMenu.objects.filter(date='2013-10-11')
+        except:
+            print "Can not get today live memu list"
+
     try:
         searchedVideoList = searchByPlace(placeMap[place])
     except KeyError, VideoInfo.DoesNotExist:
